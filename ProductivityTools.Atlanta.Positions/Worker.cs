@@ -43,8 +43,13 @@ namespace ProductivityTools.Atlanta.Positions
             resultCity.Add("Austin", 0);
             resultCity.Add("Chicago", 0);
             resultCity.Add("New york", 0);
-            while (true)
+            resultCity.Add("New York", 0);
+            resultCity.Add("Atlanta", 0);
+            resultCity.Add("Mountain View", 0);
+            resultCity.Add("Boulder", 0);
+            for (int i = 0; i < 60; i++)
             {
+                Thread.Sleep(2000);
 
                 var inputs = Driver.FindElements(By.TagName("grow-job-search-result"));
                 foreach (var input in inputs)
@@ -68,9 +73,15 @@ namespace ProductivityTools.Atlanta.Positions
                         result.Add(line);
                     }
                 }
+                Thread.Sleep(2000);
                 var next = Driver.FindElement(By.ClassName("next-page"));
                 Actions actions = new Actions(this.Driver);
                 actions.MoveToElement(next).Click().Build().Perform();
+            }
+
+            foreach (var item in resultCity)
+            {
+                Console.WriteLine($"{item.Key},{item.Value}");
             }
 
         }
